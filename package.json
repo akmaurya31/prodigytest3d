@@ -27,7 +27,7 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    
   }
 }
 
