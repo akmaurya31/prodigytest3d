@@ -33,8 +33,8 @@ Customer.m_addBankDetail = (inputData, result) => {
       let my_user_id = res[0].id; 
       inputData.user_id=my_user_id; 
       console.log("Email found");
-     let sql_userbank = `INSERT INTO user_bank (user_id,bank_name,acoount_type,branch,accountNo,fscode,isprimary_bank) VALUES ('${inputData.user_id}', '${inputData.name}','${inputData.account_type}','${inputData.branch}','${inputData.accountno}','${inputData.ifsc}',0)`; 
-       
+      let sql_userbank = `INSERT INTO user_bank (user_id,bank_name,acoount_type,branch,accountNo,fscode,isprimary_bank) VALUES ('${inputData.user_id}', '${inputData.name}','${inputData.account_type}','${inputData.branch}','${inputData.accountno}','${inputData.ifsc}',0)`; 
+     
       sql.query(sql_userbank, function (err, resvv) {
 
          console.log("created customer: ",resvv);
@@ -220,4 +220,21 @@ Customer.getFatcamm_nov = (email, result) => {
 
 };
  
+//////////////////////////////////////
+  Customer.perchase_normal  = (email, result) => {
+
+    sql.query("SELECT * FROM users where email='"+`${email}`+"'", (err, res) => {    
+      console.log("m- line 351 ")
+      if (Array.isArray(res) && res.length) {
+      if (res[0].hasOwnProperty('email')) {  
+      let u_id=res[0].id;
+      console.log("m- line 355 ",u_id)
+      result(null, res);     }}
+      else{     
+       console.log("m- line 358 ")
+       result(null, res);      
+    }  
+  });
+  
+  };
 module.exports = Customer;
