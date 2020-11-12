@@ -55,6 +55,12 @@ exports.addBankDetail = (req, res) => {
     errflag=1;
 
    // console.log(" accountno: feild is required");
+  } if (req.body.account_type===undefined || req.body.account_type==''){
+    
+    ash_data.account_type=" account_type: feild is required";
+    errflag=1;
+
+   // console.log(" accountno: feild is required");
   } if(req.body.branch===undefined || req.body.branch==''){
     
     ash_data.branch=" branch: feild is required";
