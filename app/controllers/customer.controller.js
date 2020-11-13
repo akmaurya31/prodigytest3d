@@ -4,7 +4,7 @@ const substrings = require("../../node_modules/substrings");
 //  const parser = require('../../node_modules/xml2json');
 //onst https = require('../../node_modules/https');
 var mysql = require('../../node_modules/mysql');
-
+var jsonxml  = require('../../node_modules/xml2js');
 var jsonxml  = require('../../node_modules/jsontoxml');
 var convert = require('../../node_modules/xml-js');
 
@@ -592,28 +592,28 @@ console.log("res last line 969");
         appln_id:'MFS21399',
         password:'Account@2121',
         broker_code:'ARN-21399',
-        iin:'5011221068',
+        iin:'5011221707',
         sub_trxn_type:'N',
-        poa: 'Y',
-        poa_bank_trxn_type: 'NDCPMS',
+        poa: 'N',
+        poa_bank_trxn_type: [],
         trxn_acceptance: 'OL',
-        demat_user: 'Y',
+        demat_user: 'N',
         dp_id: [],
-        bank: 'AXIS',
-        ac_no: '037010100256352',
-        ifsc_code: 'UTIB0000037',
+        bank: 'PNB',
+        ac_no: '294000110086744',
+        ifsc_code: 'PUNB0029400',
         sub_broker_arn_code: [],
         sub_broker_code: [],
-        euin_opted: 'N',
-        euin: [],
+        euin_opted: 'Y',
+        euin: 'E073161',
         trxn_execution: [],
         remarks: [],
         payment_mode: 'OL',
-        billdesk_bank: 'AXIS',
+        billdesk_bank: 'PNB',
         instrm_bank: [],
         instrm_ac_no: [],
         instrm_no: [],
-        instrm_amount: '3232',
+        instrm_amount: '500',
         instrm_date: [],
         instrm_branch: [],
         instrm_charges: [],
@@ -623,7 +623,7 @@ console.log("res last line 969");
         advisory_charge: [],
         dd_charge: [],
         cheque_deposit_mode: [],
-        debit_amount_type: [],
+        debit_amount_type: 'M',
         sip_micr_no: [],
         sip_bank: [],
         sip_branch: [],
@@ -637,62 +637,44 @@ console.log("res last line 969");
         ach_enddate: [],
         until_cancelled: [],
         Return_paymnt_flag: 'Y',
-        Client_callback_url: 'Provide your Webpage / API URL',
+        Client_callback_url: 'API URL',
         Bank_holder_name: 'Krishna',
         Bank_holder_name1: [],
         Bank_holder_name2: [],
         iin_conf_flag: 'Y',
-        trxn_initiator: 'I / O',
+        trxn_initiator: 'O',
         trans_count: '1',
         utr_no: [],
         transfer_date: '15-Feb-2020',
         investor_auth_log: [],
-        ach_exist: 'Y'
+        ach_exist: 'N',
+        instrm_bank: 'PNB'
         },
         childtrans: { 
-        amc: 'T',
+        amc: 'RMF',
         folio: [],
-        product_code: 'SIP3G',
+        product_code: 'SEGPGR',
         ft_acc_no: [],
-        reinvest: 'N',
-        amount: '10000',
+        reinvest: 'Z',
+        amount: '500',
         sip_from_date: [],
         sip_end_date: [],
         sip_freq: [],
         sip_amount: [],
         sip_period_day: [],
-        input_ref_no: '52521',
+        input_ref_no: [],
         perpetual_flag: [],
         insurance_enabled: [],
         GOAL_BASED_SIP: [],
         GOAL_TYPE: [],
         GOAL_AMOUNT: [],
-        FREEDOM_SIP: 'Y',
-        FREEDOM_TARGET_SCHEME: 'RG2GR',
-        FREEDOM_TENURE: '12',
-        FREEDOM_SWP_AMOUNT: '50000',
-        iin: '5011221068',
-        sub_trxn_type: 'N',
-        poa: 'Y',
-        poa_bank_trxn_type: 'NDCPMS',
-        trxn_acceptance: 'OL',
-        demat_user: 'Y',
-        dp_id: [],
-        bank: 'AXIS',
-        ac_no: '037010100256352',
-        ifsc_code: 'UTIB0000037',
+        FREEDOM_SIP: [],
+        FREEDOM_TARGET_SCHEME: [],
+        FREEDOM_TENURE: [],
+        FREEDOM_SWP_AMOUNT: [],
+        iin: [],
         sub_broker_arn_code: [],
         sub_broker_code: [],
-        euin_opted: 'N',
-        euin: [],
-        trxn_execution: [],
-        remarks: [],
-        payment_mode: 'OL',
-        billdesk_bank: 'AXIS',
-        instrm_bank: [],
-        instrm_ac_no: [],
-        instrm_no: [],
-        instrm_amount: '3232',
         instrm_date: [],
         instrm_branch: [],
         instrm_charges: [],
@@ -713,21 +695,8 @@ console.log("res last line 969");
         umrn: [],
         ach_amt: [],
         ach_fromdate: [],
-        ach_enddate: [],
-        until_cancelled: [],
-        Return_paymnt_flag: 'Y',
-        Client_callback_url: 'Provide your Webpage / API URL',
-        Bank_holder_name: 'Krishna',
-        Bank_holder_name1: [],
-        Bank_holder_name2: [],
-        iin_conf_flag: 'Y',
-        trxn_initiator: 'I / O',
-        trans_count: '1',
-        utr_no: [],
-        transfer_date: '15-Feb-2020',
-        investor_auth_log: [],
-        ach_exist: 'Y'
-        }  
+        ach_enddate: []
+       }  
       }//service_request
     } //NMFIIService
     //else
@@ -740,6 +709,22 @@ console.log("res last line 969");
     //console.log(ash_xml_agamji);
 
     
+
+  //let vari="<DataSet><xs:schema id=‘NMFIISERVICES’ xmlns:xs=‘http://www.w3.org/2001/XMLSchema’ xmlns:msdata=‘urn:schemas-microsoft-com:xml-msdata’><xs:element name=‘NMFIISERVICES’ msdata:IsDataSet=‘true’ msdata:UseCurrentLocale=‘true’><xs:complexType><xs:choice minOccurs=‘0’ maxOccurs=‘unbounded’><xs:element name=‘service_response’><xs:complexType> <xs:sequence><xs:element name=‘Unique_No’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Trxn_No’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Application_No’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Fund’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Folio’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Scheme’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Scheme_Name’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Amt’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Status_Desc’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Status_code’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Input_ref_no’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Paymentlink’ type=‘xs:string’ default=‘&lt;a href='https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59'&gt;https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59&lt;/a&gt;’ minOccurs=‘0’/></xs:sequence></xs:complexType></xs:element><xs:element name=‘service_status’><xs:complexType><xs:sequence><xs:element name=‘service_return_code’ type=‘xs:string’ minOccurs=‘0’/>                                <xs:element name=‘service_msg’ type=‘xs:string’ minOccurs=‘0’/><xs:element name=‘Paymentlink’ type=‘xs:string’ default=‘&lt;a href='https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59'&gt;https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59&lt;/a&gt;’ minOccurs=‘0’/></xs:sequence></xs:complexType></xs:element></xs:choice></xs:complexType></xs:element></xs:schema><diffgr:diffgram xmlns:diffgr=‘urn:schemas-microsoft-com:xml-diffgram-v1’ xmlns:msdata=‘urn:schemas-microsoft-com:xml-msdata’><NMFIISERVICES><service_response diffgr:id=‘service_response1’ msdata:rowOrder='0'><Unique_No>70092961</Unique_No> <Trxn_No>2546151</Trxn_No><Application_No>70442</Application_No><Fund>Nippon India Mutual Fund</Fund>                <Folio/>                <Scheme>SEGPGR</Scheme>                <Scheme_Name>NIPPON INDIA Value Fund - GROWTH PLAN GROWTH OPTION - GROWTH</Scheme_Name>                <Amt>500.00</Amt>                <Status_Desc>Ok</Status_Desc>               <Status_code>0</Status_code>                <Input_ref_no>52521</Input_ref_no>                <Paymentlink>&lt;a href='https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59'&gt;https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59&lt;/a&gt;</Paymentlink></service_response><service_status diffgr:id='service_status1' msdata:rowOrder='0' diffgr:hasChanges='inserted'><service_return_code>0</service_return_code><service_msg>Success</service_msg><Paymentlink>&lt;a href='https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59'&gt;https://uat.nsenmf.com/Transactions/MFDMakePayment.aspx?f5wrnmHkNUVjlAape5yPV8Y%2bpvdrR8QSu7edgbT3PGf1%2fAD0lDqwvRS5523viyca7s1y44m%2fGd1XldqX%2fipI6owh813NE1vDsyVLe8LZ3XFE5Vq%2blm8hJHu4LkSmUlHu6aFiDZjPwByreC9lrCvA5WpWGtzf6%2foFO9t3b5fQs3MUm0ahOBctI0xdAgx9gAcT%2f%2bfh5Fa7NOYatX5Nfldo42Hzu88SReLTOOxEPX2aaFdlPpJ4a6%2b2oEyRiHFv5PFkwmpLDTkvURDl9ocAsppHkqTb8EWoGsD31E315Ry6meFo%2bSBqXRjk3S1mIn%2fzmLNDQP5tDp5SbUxLC8IQnzhw8HBlodyo7wANL8VlX4IXqnxBgCudwVBbwgpfPq5GS%2b59&lt;/a&gt;</Paymentlink></service_status></NMFIISERVICES></diffgr:diffgram></DataSet>";
+   //let varia="<DataSet><DataSet><xs:schema id=‘NMFIISERVICES’ xmlns:xs=‘http://www.w3.org/2001/XMLSchema’ xmlns:msdata=‘urn:schemas-microsoft-com:xml-msdata’><xs:element name=‘NMFIISERVICES’ msdata:IsDataSet=‘true’ msdata:UseCurrentLocale=‘true’><xs:complexType><xs:choice minOccurs=‘0’ maxOccurs=‘unbounded’><xs:element name=‘service_response’></DataSet>";
+    //console.log(vari);
+
+   // let json = {};
+   // let result = convert.xml2js(vari, {compact: true, spaces: 4});
+   //let result = convert.xml2js.parseString(vari, { explicitArray: false, ignoreAttrs: true }, (err, result) => {
+     // json = result;
+    //});
+
+    //let result1 = convert.xml2js(vari, {compact: true, spaces: 4});
+    //console.log(result);
+   // return;
+
+
     // ash_xml_agamji = ash_xml_agamji.replace(
     //   // Replace out the new line character.
     //   new RegExp( "\\n", "g" ), 
@@ -789,22 +774,23 @@ console.log("res last line 969");
 			
 		}
 		}
-			 console.log("C- Output XML - Line 768", fatcaresult2[0].return_msg._text)
-			console.log("C- Output XML - Line 769", fatcaresult2[1].return_msg._text)
-      console.log("C- Output XML - Line 770", fatcaresult2[2].return_msg._text)
-    
-      console.log("C- Output XML - Line 960", fatcaresult2[3].return_msg._text)
-			console.log("C- Output XML - Line 960", fatcaresult2[4].return_msg._text)
-			console.log("C- Output XML - Line 960", fatcaresult2[5].return_msg._text)
-			console.log("C- Output XML - Line 960", fatcaresult2[6].return_msg._text)
+    console.log("C- Output XML - Unique_No:", fatcaresult2.Unique_No._text)
+    console.log("C- Output XML - Trxn_No:", fatcaresult2.Trxn_No._text)
+		console.log("C- Output XML - Application_No:", fatcaresult2.Application_No._text)
+    console.log("C- Output XML - Fund:", fatcaresult2.Fund._text)    
+    console.log("C- Output XML - Scheme:", fatcaresult2.Scheme._text)
+		console.log("C- Output XML - Scheme_Name:", fatcaresult2.Scheme_Name._text)
+    console.log("C- Output XML - Amt:", fatcaresult2.Amt._text)
+    console.log("C- Output XML - Amt:", fatcaresult2.Paymentlink._text)
+		//	console.log("C- Output XML - Line 960", fatcaresult2[6].return_msg._text)
 			//console.log("C- Output XML - Line 960", fatcaresult2[7].return_msg._text)
-      ashdata1=fatcaresult2[0].return_msg._text;
-      ashdata2=fatcaresult2[1].return_msg._text;
-      ashdata3=fatcaresult2[2].return_msg._text;
-      ashdata4=fatcaresult2[3].return_msg._text;
-      ashdata5=fatcaresult2[4].return_msg._text;
-      ashdata6=fatcaresult2[5].return_msg._text;
-      ashdata7=fatcaresult2[6].return_msg._text;
+     ashdata1=fatcaresult2.Unique_No._text;
+     ashdata2=fatcaresult2.Trxn_No._text;
+     ashdata3=fatcaresult2.Application_No._text;
+     ashdata4=fatcaresult2.Fund._text;
+     ashdata5=fatcaresult2.Scheme._text;
+     ashdata6=fatcaresult2.Scheme_Name._text;
+     ashdata7=fatcaresult2.Amt._text;
       
       
       let agmess='';  
@@ -812,15 +798,17 @@ console.log("res last line 969");
       if(fatcaresult==0){    
         agmess= {
            status:200,
-           message:'Successfully .',            
-           message_full: fatcaresult2  
+           message:'Successfull',            
+           data:  { "Unique_No ": ashdata1,"Trxn_No: ": ashdata2 ,"Application_No: ": ashdata3, "Fund: ": ashdata4,"Scheme: ": ashdata5, "Scheme_Name: ": ashdata6, "Amt: ": ashdata7,"Status_Desc ":"","Status_code ":"","Input_ref_no ":"","Paymentlink ":fatcaresult2.Paymentlink._text.substring(9,fatcaresult2.Paymentlink._text.length-4).InnerHtnl,},  
+           message_full: fatcaresult2 ,
          }
        }else{
          agmess= {
            status:200,
            message:'Successfully',
           // message_1: fatcaresult2,               
-           data:  { "0": ashdata1, "1": ashdata2 ,"2": ashdata3, "3": ashdata4,"4": ashdata5, "5": ashdata6, "6": ashdata7},              
+         // data:  { "0": ashdata1},
+           //"1": ashdata2 ,"2": ashdata3, "3": ashdata4,"4": ashdata5, "5": ashdata6, "6": ashdata7},              
       //message_third_api:'FAILED',
      message_full:fatcaresult2,
           }
