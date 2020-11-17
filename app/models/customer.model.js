@@ -221,7 +221,7 @@ Customer.getFatcamm_nov = (email, result) => {
 };
  
 //////////////////////////////////////
-  Customer.perchase_normal  = (email, result) => {
+  Customer.purchase_normal  = (email, result) => {
 
     sql.query("SELECT * FROM users where email='"+`${email}`+"'", (err, res) => {    
       console.log("m- line 351 ")
