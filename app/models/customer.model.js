@@ -220,21 +220,6 @@ Customer.getFatcamm_nov = (email, result) => {
 
 };
  
-//////////////////////////////////////
-  Customer.purchase_normal  = (email, result) => {
 
-    sql.query("SELECT * FROM users where email='"+`${email}`+"'", (err, res) => {    
-      console.log("m- line 351 ")
-      if (Array.isArray(res) && res.length) {
-      if (res[0].hasOwnProperty('email')) {  
-      let u_id=res[0].id;
-      console.log("m- line 355 ",u_id)
-      result(null, res);     }}
-      else{     
-       console.log("m- line 358 ")
-       result(null, res);      
-    }  
-  });
   
-  };
 module.exports = Customer;
