@@ -11,4 +11,6 @@ module.exports = app => {
     app.get("/getNSEBank", customers.getnsebank);
     app.post("/readFatca1",customers.readFatca1_nov);
     app.get("/perchase",customers.perchase);//executed with error
+  app.post("/changePbank",customers.changePbank);
+    app.post("/deletebank",customers.deletebank);
 };
