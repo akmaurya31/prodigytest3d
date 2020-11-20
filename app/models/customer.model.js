@@ -262,6 +262,7 @@ Customer.getFatcamm_nov = (email, result) => {
         if(resvv.affectedRows>0){
          console.log("Bank Details updated: ",resvv);
         result(null,{ status:200, message:"Bank Details updated "});
+         return
         }
         else{
           console.log("Bank Details not updated, bankid not found : ",resvv);
@@ -300,6 +301,7 @@ Customer.getFatcamm_nov = (email, result) => {
          //console.log("created customer: ",resvv);
          //result(null,{ status:200, message:"Bank Details added ",  data:resvv });
         result(null,{ status:200, message:"Bank Details deleted "});
+         return
         }
         else{
           console.log("Bank Details not deleted, bankid not found : ",resvv);
