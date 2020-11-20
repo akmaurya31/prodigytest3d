@@ -848,7 +848,7 @@ console.log("res last line 969");
 
        
        
-       //res.send(data);
+       res.send(data);
         return;     
 
       });
@@ -863,7 +863,7 @@ console.log("res last line 969");
       }
       Customer.delete_bank(postarray.email,postarray.bank_id,(err, data) => {
          
-       //res.send(data);
+       res.send(data);
         return;     
 
       });
