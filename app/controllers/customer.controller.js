@@ -564,11 +564,30 @@ console.log("res last line 969");
   }   
 
   //////////////////////////////////////////////////////////////
-  exports.perchase = (req, res) => {  
+ 
+ exports.purchase = (req, res) => {  
     console.log("purchase")
-    const postarray= { email:req.body.email }
+    const postarray= { email:req.body.email,
+      sub_trxn_type:req.body.sub_trxn_type,
+      trxn_acceptance:req.body.trxn_acceptance,
+      payment_mode:req.body.payment_mode,
+      instrm_amount:req.body.instrm_amount,
+      debit_amount_type:req.body.debit_amount_type,
+      Return_paymnt_flag:req.body.Return_paymnt_flag,
+      Client_callback_url:req.body.Client_callback_url,
+      ach_exist:req.body.ach_exist,
+      amc:req.body.amc,
+      product_code:req.body.product_code,
+      reinvest:req.body.reinvest,
+      amount:req.body.amount,
+      input_ref_no:req.body.input_ref_no,
+      perpetual_flag:req.body.perpetual_flag,
+      instrm_date:req.body.instrm_date,
+      rtgs_code:req.body.rtgs_code,
+      umrn:req.body.umrn
+    }
    // return;
-   Customer.perchase_normal(postarray.email,(err, data) => {
+   Customer.purchase_normal(postarray.email,(err, data) => {
 
     if(data!=null){        
       if (!Array.isArray(data) || !data.length) {                
@@ -579,7 +598,10 @@ console.log("res last line 969");
    }}
    
    let urs=data[0]
-   let resdatemy=String(urs.date_of_birrth);        
+   let resdatemy=String(urs.date_of_birrth);   
+    let resaccountNomy=urs.accountNo;
+    console.log("res line 844",urs.bank_code);
+    //return
    let xb=resdatemy.split(" ");     
    let mydob_xb=xb[2]+"-"+xb[1]+"-"+xb[3]
    let pep= (urs.exposedPolitically == '1') ? "N" : "Y";
@@ -592,30 +614,30 @@ console.log("res last line 969");
         appln_id:'MFS21399',
         password:'Account@2121',
         broker_code:'ARN-21399',
-        iin:'5011221068',
-        sub_trxn_type:'N',
-        poa: 'Y',
-        poa_bank_trxn_type: 'NDCPMS',
-        trxn_acceptance: 'OL',
-        demat_user: 'Y',
+        iin:urs.iin,
+        sub_trxn_type:postarray.sub_trxn_type,
+        poa: 'N',
+        poa_bank_trxn_type: [],
+        trxn_acceptance:postarray.trxn_acceptance,
+        demat_user: 'N',
         dp_id: [],
-        bank: 'AXIS',
-        ac_no: '037010100256352',
-        ifsc_code: 'UTIB0000037',
+        bank: urs.bank_code,
+        ac_no: resaccountNomy,
+        ifsc_code: urs.fscode,
         sub_broker_arn_code: [],
         sub_broker_code: [],
         euin_opted: 'N',
-        euin: [],
+        euin: 'E073161',
         trxn_execution: [],
         remarks: [],
-        payment_mode: 'OL',
-        billdesk_bank: 'AXIS',
-        instrm_bank: [],
+        payment_mode: postarray.payment_mode,
+        billdesk_bank: urs.bank_code,
+        instrm_bank:  urs.bank_code,
         instrm_ac_no: [],
         instrm_no: [],
-        instrm_amount: '3232',
-        instrm_date: [],
-        instrm_branch: [],
+        instrm_amount:postarray.instrm_amount,
+        instrm_date: postarray.instrm_date,
+        instrm_branch: urs.branch,
         instrm_charges: [],
         micr: [],
         rtgs_code: [],
@@ -623,7 +645,7 @@ console.log("res last line 969");
         advisory_charge: [],
         dd_charge: [],
         cheque_deposit_mode: [],
-        debit_amount_type: [],
+        debit_amount_type: postarray.debit_amount_type,
         sip_micr_no: [],
         sip_bank: [],
         sip_branch: [],
@@ -636,63 +658,48 @@ console.log("res last line 969");
         ach_fromdate: [],
         ach_enddate: [],
         until_cancelled: [],
-        Return_paymnt_flag: 'Y',
-        Client_callback_url: 'Provide your Webpage / API URL',
-        Bank_holder_name: 'Krishna',
+        Return_paymnt_flag: postarray.Return_paymnt_flag,
+        Client_callback_url: postarray.Client_callback_url,
+        Bank_holder_name: urs.name,
         Bank_holder_name1: [],
         Bank_holder_name2: [],
         iin_conf_flag: 'Y',
-        trxn_initiator: 'I / O',
+        trxn_initiator: 'O',
         trans_count: '1',
         utr_no: [],
         transfer_date: '15-Feb-2020',
         investor_auth_log: [],
-        ach_exist: 'Y'
+        ach_exist: postarray.ach_exist,
+        instrm_bank: urs.bank_code,
+
+        rtgs_code:postarray.rtgs_code,
+        umrn:postarray.umrn
         },
         childtrans: { 
-        amc: 'T',
+        amc: postarray.amc,
         folio: [],
-        product_code: 'SIP3G',
+        product_code: postarray.product_code,
         ft_acc_no: [],
-        reinvest: 'N',
-        amount: '10000',
+        reinvest: postarray.reinvest,
+        amount: postarray.amount,
         sip_from_date: [],
         sip_end_date: [],
         sip_freq: [],
         sip_amount: [],
         sip_period_day: [],
-        input_ref_no: '52521',
-        perpetual_flag: [],
+        input_ref_no: postarray.input_ref_no,
+        perpetual_flag: postarray.perpetual_flag,
         insurance_enabled: [],
         GOAL_BASED_SIP: [],
         GOAL_TYPE: [],
         GOAL_AMOUNT: [],
-        FREEDOM_SIP: 'Y',
-        FREEDOM_TARGET_SCHEME: 'RG2GR',
-        FREEDOM_TENURE: '12',
-        FREEDOM_SWP_AMOUNT: '50000',
-        iin: '5011221068',
-        sub_trxn_type: 'N',
-        poa: 'Y',
-        poa_bank_trxn_type: 'NDCPMS',
-        trxn_acceptance: 'OL',
-        demat_user: 'Y',
-        dp_id: [],
-        bank: 'AXIS',
-        ac_no: '037010100256352',
-        ifsc_code: 'UTIB0000037',
+        FREEDOM_SIP: [],
+        FREEDOM_TARGET_SCHEME: [],
+        FREEDOM_TENURE: [],
+        FREEDOM_SWP_AMOUNT: [],
+        iin: [],
         sub_broker_arn_code: [],
         sub_broker_code: [],
-        euin_opted: 'N',
-        euin: [],
-        trxn_execution: [],
-        remarks: [],
-        payment_mode: 'OL',
-        billdesk_bank: 'AXIS',
-        instrm_bank: [],
-        instrm_ac_no: [],
-        instrm_no: [],
-        instrm_amount: '3232',
         instrm_date: [],
         instrm_branch: [],
         instrm_charges: [],
@@ -713,21 +720,8 @@ console.log("res last line 969");
         umrn: [],
         ach_amt: [],
         ach_fromdate: [],
-        ach_enddate: [],
-        until_cancelled: [],
-        Return_paymnt_flag: 'Y',
-        Client_callback_url: 'Provide your Webpage / API URL',
-        Bank_holder_name: 'Krishna',
-        Bank_holder_name1: [],
-        Bank_holder_name2: [],
-        iin_conf_flag: 'Y',
-        trxn_initiator: 'I / O',
-        trans_count: '1',
-        utr_no: [],
-        transfer_date: '15-Feb-2020',
-        investor_auth_log: [],
-        ach_exist: 'Y'
-        }  
+        ach_enddate: []
+       }  
       }//service_request
     } //NMFIIService
     //else
@@ -735,18 +729,12 @@ console.log("res last line 969");
     
      
      
-   // console.log(ash_arrk);
+   console.log(ash_arrk);
     let ash_xml_agamji=jsonxml(ash_arrk);  
-    //console.log(ash_xml_agamji);
+   // console.log(ash_xml_agamji);
 
     
-    // ash_xml_agamji = ash_xml_agamji.replace(
-    //   // Replace out the new line character.
-    //   new RegExp( "\\n", "g" ), 
-    //   "" 
-    //   );
-
-    console.log(ash_xml_agamji);
+    //console.log(ash_xml_agamji);
     axios.post('https://uat.nsenmf.com/NMFIITrxnService/NMFTrxnService/PURCHASETRXN',
     ash_xml_agamji,
     {headers:
@@ -768,7 +756,8 @@ console.log("res last line 969");
 		let newdata0= fatcaresult2[0];
 		let newdata0_0= fatcaresult2[1];
 		let adddata1="";
-		let	adddata2="";
+    let	adddata2="";
+    let msg="";
 		
 		if(typeof newdata0 !== "undefined"  || typeof newdata0_0 !== "undefined"){
 		let newdata1= fatcaresult2[0].return_msg;
@@ -788,39 +777,65 @@ console.log("res last line 969");
 			adddata2="";
 			
 		}
-		}
-			 console.log("C- Output XML - Line 768", fatcaresult2[0].return_msg._text)
-			console.log("C- Output XML - Line 769", fatcaresult2[1].return_msg._text)
-      console.log("C- Output XML - Line 770", fatcaresult2[2].return_msg._text)
+    }
     
-      console.log("C- Output XML - Line 960", fatcaresult2[3].return_msg._text)
-			console.log("C- Output XML - Line 960", fatcaresult2[4].return_msg._text)
-			console.log("C- Output XML - Line 960", fatcaresult2[5].return_msg._text)
-			console.log("C- Output XML - Line 960", fatcaresult2[6].return_msg._text)
+    if(fatcaresult==0){    
+    console.log("C- Output XML - Unique_No:", fatcaresult2.Unique_No._text)
+    console.log("C- Output XML - Trxn_No:", fatcaresult2.Trxn_No._text)
+		console.log("C- Output XML - Application_No:", fatcaresult2.Application_No._text)
+    console.log("C- Output XML - Fund:", fatcaresult2.Fund._text)    
+    console.log("C- Output XML - Scheme:", fatcaresult2.Scheme._text)
+		console.log("C- Output XML - Scheme_Name:", fatcaresult2.Scheme_Name._text)
+    console.log("C- Output XML - Amt:", fatcaresult2.Amt._text)
+    link_var='';
+    if (typeof fatcaresult2.Paymentlink !== 'undefined' && fatcaresult2.Paymentlink._text !== null){
+    console.log("C- Output XML - Link:", fatcaresult2.Paymentlink._text)
+    link_var=fatcaresult2.Paymentlink._text;
+   }
+		//	console.log("C- Output XML - Line 960", fatcaresult2[6].return_msg._text)
 			//console.log("C- Output XML - Line 960", fatcaresult2[7].return_msg._text)
-      ashdata1=fatcaresult2[0].return_msg._text;
-      ashdata2=fatcaresult2[1].return_msg._text;
-      ashdata3=fatcaresult2[2].return_msg._text;
-      ashdata4=fatcaresult2[3].return_msg._text;
-      ashdata5=fatcaresult2[4].return_msg._text;
-      ashdata6=fatcaresult2[5].return_msg._text;
-      ashdata7=fatcaresult2[6].return_msg._text;
-      
-      
+     ashdata1=fatcaresult2.Unique_No._text;
+     ashdata2=fatcaresult2.Trxn_No._text;
+     ashdata3=fatcaresult2.Application_No._text;
+     ashdata4=fatcaresult2.Fund._text;
+     ashdata5=fatcaresult2.Scheme._text;
+     ashdata6=fatcaresult2.Scheme_Name._text;
+     ashdata7=fatcaresult2.Amt._text;
+     ashdata8=fatcaresult2.Status_Desc._text;
+     ashdata9=fatcaresult2.Status_code._text;
+     ashdata10=fatcaresult2.Input_ref_no._text;
+    }
+    else 
+    { 
+      if (Array.isArray(fatcaresult2) && fatcaresult2.length) {
+        fatcaresult2.forEach(element => { 
+          console.log(element.return_msg._text); 
+          msg=msg+element.return_msg._text + '||';
+        }); 
+    //console.log("C- Output XML - Line 958", fatcaresult2[0].return_msg._text)
+    //console.log("C- Output XML - Line 960", fatcaresult2[1].return_msg._text)
+      }
+    //console.log("C- Output XML - Line 958", fatcaresult2[0].return_msg._text)
+	  //console.log("C- Output XML - Line 960", fatcaresult2[1].return_msg._text)
+    }
+
+
       let agmess='';  
 		  
       if(fatcaresult==0){    
         agmess= {
            status:200,
-           message:'Successfully .',            
-           message_full: fatcaresult2  
+           message:'Successfull',            
+          data:  { "Unique_No ": ashdata1,"Trxn_No: ": ashdata2 ,"Application_No: ": ashdata3, "Fund: ": ashdata4,"Scheme: ": ashdata5, "Scheme_Name: ": ashdata6, "Amt: ": ashdata7,"Status_Desc ":ashdata8,"Status_code ":ashdata9,"Input_ref_no ":ashdata10,"Paymentlink ":link_var.substring(9,(link_var.length+3)*.5),},  
+           message_full: fatcaresult2 ,
          }
        }else{
          agmess= {
-           status:200,
-           message:'Successfully',
+           status:400,
+           message:'Failed',
           // message_1: fatcaresult2,               
-           data:  { "0": ashdata1, "1": ashdata2 ,"2": ashdata3, "3": ashdata4,"4": ashdata5, "5": ashdata6, "6": ashdata7},              
+          data:  msg,
+           //"1": ashdata2 ,"2": ashdata3, "3": ashdata4,"4": ashdata5, "5": ashdata6, "6": ashdata7},              
       //message_third_api:'FAILED',
      message_full:fatcaresult2,
           }
@@ -833,6 +848,8 @@ console.log("res last line 969");
 
     });
   };
+  
+  
   
   
   ////////////////
