@@ -12,6 +12,8 @@ const axios = require('../../node_modules/axios');
 
 var fs = require('fs');
 const { ECONNABORTED } = require("constants");
+const dbConfig = require("../config/db.config.js");
+const sql = require("../models/db.js");
 
 exports.showDetails = (req, res) => {
  //console.log(req.body)
