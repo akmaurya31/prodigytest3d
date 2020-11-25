@@ -563,9 +563,9 @@ console.log("res last line 969");
   });
   }   
 
-  //////////////////////////////////////////////////////////////
- 
- exports.purchase = (req, res) => {  
+ //////////////////////////////////////////////////////////////
+ // Customer.m_addBankDetail(req.body, (err, data) => {
+  exports.purchase = (req, res) => {  
     console.log("purchase")
     const postarray= { email:req.body.email,
       sub_trxn_type:req.body.sub_trxn_type,
@@ -779,7 +779,8 @@ console.log("res last line 969");
 		}
     }
     
-    if(fatcaresult==0){    
+    if(fatcaresult==0){
+      //console.log("ashC- Output XML - Link:789");          
     console.log("C- Output XML - Unique_No:", fatcaresult2.Unique_No._text)
     console.log("C- Output XML - Trxn_No:", fatcaresult2.Trxn_No._text)
 		console.log("C- Output XML - Application_No:", fatcaresult2.Application_No._text)
@@ -794,6 +795,25 @@ console.log("res last line 969");
    }
 		//	console.log("C- Output XML - Line 960", fatcaresult2[6].return_msg._text)
 			//console.log("C- Output XML - Line 960", fatcaresult2[7].return_msg._text)
+    userdata1=urs.user_id;
+    userdata2=postarray.sub_trxn_type;
+    userdata3=postarray.trxn_acceptance;
+    userdata4=postarray.payment_mode;
+    userdata5=postarray.instrm_amount;
+    userdata6=postarray.debit_amount_type;
+    userdata7=postarray.Return_paymnt_flag;
+    userdata8=postarray.Client_callback_url;
+    userdata9=postarray.ach_exist;
+    userdata10=postarray.amc;
+    userdata11=postarray.product_code;
+    userdata12=postarray.reinvest;
+    userdata13=postarray.input_ref_no;
+    userdata14=postarray.perpetual_flag;
+    userdata15=postarray.instrm_date;
+    userdata16=postarray.rtgs_code;
+    userdata17=postarray.umrn;    
+    userdata18=postarray.amount;    
+    
      ashdata1=fatcaresult2.Unique_No._text;
      ashdata2=fatcaresult2.Trxn_No._text;
      ashdata3=fatcaresult2.Application_No._text;
@@ -804,9 +824,22 @@ console.log("res last line 969");
      ashdata8=fatcaresult2.Status_Desc._text;
      ashdata9=fatcaresult2.Status_code._text;
      ashdata10=fatcaresult2.Input_ref_no._text;
+
+
+     let sql_purchase = `INSERT INTO purchase (user_id, Unique_No, Trxn_No, Application_No, Fund, Scheme, Scheme_Name, Amount,sub_trxn_type, trxn_acceptance, payment_mode, instrm_amount, debit_amount_type, Return_paymnt_flag, Client_callback_url, ach_exist, amc, product_code, reinvest, input_ref_no, perpetual_flag, instrm_date, rtgs_code, umrn) VALUES  ('${userdata1}', '${ashdata1}','${ashdata2}','${ashdata3}','${ashdata4}','${ashdata5}','${ashdata6}','${userdata18}','${userdata2}','${userdata3}','${userdata4}','${userdata5}','${userdata6}','${userdata7}','${userdata8}','${userdata9}','${userdata10}','${userdata11}','${userdata12}','${userdata13}','${userdata14}','${userdata15}','${userdata16}','${userdata17}')`; 
+     
+     sql.query(sql_purchase, function (err, resvv) {
+      console.log(sql_purchase,resvv);
+        console.log("Data Saved:",resvv);
+       // result(null,{ status:200, message:"Data Saved:",  data:resvv });
+        
+      });
+
+
     }
     else 
     { 
+      
       if (Array.isArray(fatcaresult2) && fatcaresult2.length) {
         fatcaresult2.forEach(element => { 
           console.log(element.return_msg._text); 
@@ -814,6 +847,11 @@ console.log("res last line 969");
         }); 
     //console.log("C- Output XML - Line 958", fatcaresult2[0].return_msg._text)
     //console.log("C- Output XML - Line 960", fatcaresult2[1].return_msg._text)
+      }
+      else{
+        //console.log("ashC- Output XML - Link:827"); 
+        console.log(fatcaresult2.return_msg._text); 
+        msg=fatcaresult2.return_msg._text;
       }
     //console.log("C- Output XML - Line 958", fatcaresult2[0].return_msg._text)
 	  //console.log("C- Output XML - Line 960", fatcaresult2[1].return_msg._text)
@@ -850,9 +888,7 @@ console.log("res last line 969");
   };
   
   
-  
-  
-  ////////////////
+  //////////////// 
 
    exports.changePbank = (req, res) => {
     //console.log(linkvar)
