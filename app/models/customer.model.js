@@ -381,7 +381,7 @@ sql.query(sqlquery, (err, res) => {
           }
           else{  
             console.log("Bank details not found"); 
-            //result(null,{ status:200, message:"Bank details not found ",  data:res  });
+            result(null,{ status:200, message:"Bank details not found "});
         }
         });
       };
