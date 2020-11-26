@@ -942,7 +942,7 @@ exports.mandate = (req, res) => {
       if (!Array.isArray(data) || !data.length) {                
      return res.json({
        success: 200,
-       message: "Email Record not Found in user table"
+       message: "Bank Data not Found in user table"
      });
    }}
    
