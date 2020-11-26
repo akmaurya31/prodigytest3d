@@ -866,7 +866,7 @@ console.log("res last line 969");
         agmess= {
            status:200,
            message:'Successfull',            
-          data:  { "Unique_No ": ashdata1,"Trxn_No: ": ashdata2 ,"Application_No: ": ashdata3, "Fund: ": ashdata4,"Scheme: ": ashdata5, "Scheme_Name: ": ashdata6, "Amt: ": ashdata7,"Status_Desc ":ashdata8,"Status_code ":ashdata9,"Input_ref_no ":ashdata10,"Paymentlink ":link_var.substring(9,(link_var.length+3)*.5),},  
+          data:  { "Unique_No": ashdata1,"Trxn_No": ashdata2 ,"Application_No": ashdata3, "Fund": ashdata4,"Scheme": ashdata5, "Scheme_Name": ashdata6, "Amt": ashdata7,"Status_Desc":ashdata8,"Status_code":ashdata9,"Input_ref_no":ashdata10,"Paymentlink":link_var.substring(9,(link_var.length+3)*.5),},  
            message_full: fatcaresult2 ,
          }
        }else{
