@@ -595,7 +595,7 @@ console.log("res last line 969");
       if (!Array.isArray(data) || !data.length) {                
      return res.json({
        success: 200,
-       message: "Email Record not Found in user table"
+       message: "Bank Data not Found in user table"
      });
    }}
    
