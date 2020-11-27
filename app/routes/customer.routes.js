@@ -15,4 +15,5 @@ module.exports = app => {
     app.post("/deletebank",customers.deletebank);
   app.post("/mandate",customers.mandate);//prodigy_final2
     app.get("/getUserDetails",customers.getUserDetails);//prodigy_final2
+  app.post("/regularSIP",customers.SIP);//prodigy_final2
 };
