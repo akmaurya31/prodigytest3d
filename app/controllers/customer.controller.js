@@ -1128,9 +1128,9 @@ exports.mandate = (req, res) => {
        }else{
          agmess= {
            status:400,
-           message:'Failed',
+           message:msg,
           // message_1: fatcaresult2,               
-          data:  msg,
+          //data:  msg,
            //"1": ashdata2 ,"2": ashdata3, "3": ashdata4,"4": ashdata5, "5": ashdata6, "6": ashdata7},              
       //message_third_api:'FAILED',
      message_full:fatcaresult2,
