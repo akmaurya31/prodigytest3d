@@ -1167,6 +1167,7 @@ exports.getUserDetails = (req, res) => {
    };
    };
 
+
 exports.SIP = (req, res) => {  
     console.log("sip")
     const postarray= { 
@@ -1174,7 +1175,7 @@ exports.SIP = (req, res) => {
       email:req.body.email,
       trxn_type:req.body.trxn_type,//
       trxn_acceptance:req.body.trxn_acceptance,//
-      debit_amount_type:req.body.debit_amount_type,//
+      debit_amt_type:req.body.debit_amt_type,//
 
       sip_paymech:req.body.sip_paymech,//
       ach_amt:req.body.ach_amt,//
@@ -1196,7 +1197,11 @@ exports.SIP = (req, res) => {
       period_day: req.body.period_day,
       FREEDOM_TARGET_SCHEME: req.body.FREEDOM_TARGET_SCHEME,
       FREEDOM_TENURE: req.body.FREEDOM_TENURE,
-      FREEDOM_SWP_AMOUNT: req.body.FREEDOM_SWP_AMOUNT    
+      FREEDOM_SWP_AMOUNT: req.body.FREEDOM_SWP_AMOUNT,   
+      all_unit:req.body.all_unit,//a
+      from_date: req.body.from_date,//
+      to_date: req.body.to_date,// 
+      target_product:req.body.target_product
     }
    // return;
    Customer.SIP_normal(postarray.email,(err, data) => {
@@ -1265,9 +1270,9 @@ exports.SIP = (req, res) => {
           reinvest: postarray.reinvest,
           amt_unit_type: postarray.amt_unit_type,
           amt_unit: postarray.amt_unit,
-          all_unit:'2',
-          from_date: postarray.ach_fromdate,
-          to_date: postarray.ach_todate,
+          all_unit:postarray.all_unit,
+          from_date: postarray.from_date,
+          to_date: postarray.to_date,
           periodicity:postarray.periodicity,
           period_day: postarray.period_day,
           input_ref_no: postarray.input_ref_no,
@@ -1287,7 +1292,7 @@ exports.SIP = (req, res) => {
   //else    
      
    console.log(ash_arrk);
-   //return
+  // return
     let ash_xml_agamji=jsonxml(ash_arrk);  
    // console.log(ash_xml_agamji);
 
@@ -1338,7 +1343,8 @@ exports.SIP = (req, res) => {
     }
     
     if(fatcaresult==0){
-      //console.log("ashC- Output XML - Link:789");          
+      console.log("ashC- Output XML - Link:789");   
+      //return       
     console.log("C- Output XML - Unique_No:", fatcaresult2.Unique_No._text)
     console.log("C- Output XML - Trxn_No:", fatcaresult2.Trxn_No._text)
 		console.log("C- Output XML - Application_No:", fatcaresult2.Application_No._text)
