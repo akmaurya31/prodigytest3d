@@ -1168,7 +1168,7 @@ exports.getUserDetails = (req, res) => {
    };
 
 
-exports.SIP = (req, res) => {  
+ exports.SIP = (req, res) => {  
     console.log("sip")
     const postarray= { 
          
@@ -1448,5 +1448,3 @@ exports.SIP = (req, res) => {
 
     });
   };
-  
-  
