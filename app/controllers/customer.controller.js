@@ -193,19 +193,19 @@ exports.mandate = (req, res) => {
     
      
      
-   console.log(ash_arrk);
+   //console.log(ash_arrk);
     let ash_xml_agamji=jsonxml(ash_arrk);  
     //console.log(ash_xml_agamji);
     let msg="";
     
-    console.log(ash_xml_agamji);
+   // console.log(ash_xml_agamji);
 	  // return
     axios.post('https://uat.nsenmf.com/NMFIITrxnService/NMFTrxnService/PURCHASETRXN',
     ash_xml_agamji,
     {headers:
       {'Content-Type': 'text/xml'}
     }).then(res22=>{
-     console.log("C- Output XML - Line 946", res22)  
+     //console.log("C- Output XML - Line 946", res22)  
 
 
      let result1 = convert.xml2js(res22.data, {compact: true, spaces: 4});
@@ -275,8 +275,8 @@ exports.mandate = (req, res) => {
       
     if (Array.isArray(fatcaresult2) && fatcaresult2.length) {
       fatcaresult2.forEach(element => { 
-      console.log(element.return_msg._text); 
-      msg=msg+element.return_msg._text + '||';
+     // console.log(element.return_msg._text); 
+     // msg=msg+element.return_msg._text + '||';
       }); 
   //console.log("C- Output XML - Line 958", fatcaresult2[0].return_msg._text)
   //console.log("C- Output XML - Line 960", fatcaresult2[1].return_msg._text)
