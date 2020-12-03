@@ -960,7 +960,7 @@ exports.mandate = (req, res) => {
 
     }
    // return;
-   Customer.purchase_sip(postarray.email,(err, data) => {
+   Customer.mandate_normal(postarray.email,(err, data) => {
 
     if(data!=null){        
       if (!Array.isArray(data) || !data.length) {                
