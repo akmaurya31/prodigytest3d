@@ -17,7 +17,7 @@ const sql = require("../models/db.js");
 
 
 
-exports.mandate = (req, res) => {  
+exports.purchase_sip = (req, res) => {  
     console.log("purchase")
 	//return
     const postarray= { email:req.body.email,
@@ -53,7 +53,7 @@ exports.mandate = (req, res) => {
 
     }
    // return;
-   Customer.mandate_normal(postarray.email,(err, data) => {
+   Customer.purchase_sip(postarray.email,(err, data) => {
 
     if(data!=null){        
       if (!Array.isArray(data) || !data.length) {                
