@@ -926,9 +926,7 @@ console.log("res last line 969");
 
 
 exports.mandate = (req, res) => {  
-   
-  
-   console.log("purchase")
+    console.log("purchase")
     const postarray= { email:req.body.email,
       
       trxn_acceptance:req.body.trxn_acceptance,
@@ -962,7 +960,7 @@ exports.mandate = (req, res) => {
 
     }
    // return;
-   Customer.mandate_normal(postarray.email,(err, data) => {
+   Customer.purchase_sip(postarray.email,(err, data) => {
 
     if(data!=null){        
       if (!Array.isArray(data) || !data.length) {                
@@ -1229,6 +1227,8 @@ exports.mandate = (req, res) => {
 
     });
   };
+  
+  
   
   
 exports.getUserDetails = (req, res) => {
