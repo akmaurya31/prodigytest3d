@@ -19,7 +19,7 @@ const sql = require("../models/db.js");
 
 exports.mandate = (req, res) => {  
     console.log("purchase")
-	return
+	//return
     const postarray= { email:req.body.email,
       
       trxn_acceptance:req.body.trxn_acceptance,
@@ -67,7 +67,7 @@ exports.mandate = (req, res) => {
    let resdatemy=String(urs.date_of_birrth);   
     let resaccountNomy=urs.accountNo;
     console.log("res line 844",urs.bank_code);
-   
+   return
    let xb=resdatemy.split(" ");     
    let mydob_xb=xb[2]+"-"+xb[1]+"-"+xb[3]
    let pep= (urs.exposedPolitically == '1') ? "N" : "Y";
