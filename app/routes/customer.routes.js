@@ -2,6 +2,6 @@ module.exports = app => {
   const customers = require("../controllers/customer.controller.js");
  
     
-  app.post("/mandate",customers.mandate);
+  app.post("/purchase_sip",customers.purchase_sip);
   
 };
