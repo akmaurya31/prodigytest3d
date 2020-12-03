@@ -198,6 +198,7 @@ exports.mandate = (req, res) => {
     let msg="";
     
     console.log(ash_xml_agamji);
+	   return
     axios.post('https://uat.nsenmf.com/NMFIITrxnService/NMFTrxnService/PURCHASETRXN',
     ash_xml_agamji,
     {headers:
