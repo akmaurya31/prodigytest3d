@@ -19,6 +19,7 @@ const sql = require("../models/db.js");
 
 exports.mandate = (req, res) => {  
     console.log("purchase")
+	return
     const postarray= { email:req.body.email,
       
       trxn_acceptance:req.body.trxn_acceptance,
