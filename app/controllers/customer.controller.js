@@ -257,6 +257,38 @@ exports.purchase_sip = (req, res) => {
     link_var=fatcaresult2.Paymentlink._text;
    }//	console.log("C- Output XML - Line 960", fatcaresult2[6].return_msg._text)
 			//console.log("C- Output XML - Line 960", fatcaresult2[7].return_msg._text)
+	    
+	    userdata1=urs.user_id;
+      userdata2=postarray.sub_trxn_type;
+      userdata3=postarray.trxn_acceptance;
+      userdata4=postarray.payment_mode;
+      userdata5=postarray.instrm_amount;
+      userdata6='M',
+      userdata7="Y",
+      userdata8="API URL"
+      userdata9=postarray.ach_exist;
+      userdata10=postarray.amc;
+      userdata11=postarray.product_code;
+      userdata12=postarray.reinvest;
+      userdata13=postarray.input_ref_no;
+      userdata14=postarray.perpetual_flag;
+      userdata15=postarray.instrm_date;
+      userdata16=postarray.rtgs_code;
+      userdata17=postarray.umrn;    
+      userdata18=postarray.amount; 
+
+      userdata19=postarray.sip_ac_type,
+      userdata20=postarray.sip_paymech,
+      userdata21=postarray.ach_amt,    
+      userdata22=postarray.until_cancelled,    
+      userdata23=postarray.transfer_date,
+      userdata24=postarray.sip_from_date,
+      userdata25=postarray.sip_end_date,
+      userdata26=postarray.sip_freq,
+      userdata27=postarray.sip_amount,
+      userdata28=postarray.sip_period_day,
+      userdata29=postarray.folio, 
+	    
      ashdata1=fatcaresult2.Unique_No._text;
      ashdata2=fatcaresult2.Trxn_No._text;
      ashdata3=fatcaresult2.Application_No._text;
@@ -267,6 +299,16 @@ exports.purchase_sip = (req, res) => {
      ashdata8=fatcaresult2.Status_Desc._text;
      ashdata9=fatcaresult2.Status_code._text;
      ashdata10=fatcaresult2.Input_ref_no._text;
+	    
+	    let sql_purchase = `INSERT INTO purchase (user_id, Unique_No, Trxn_No, Application_No, Fund, Scheme, Scheme_Name, Amount,sub_trxn_type, trxn_acceptance, payment_mode, instrm_amount, debit_amount_type, Return_paymnt_flag, Client_callback_url, ach_exist, amc, product_code, reinvest, input_ref_no, perpetual_flag, instrm_date, rtgs_code, umrn,sip_ac_type, sip_paymech, sip_ach_amt,sip_until_cancelled, sip_transfer_date,sip_from_date,sip_end_date,sip_freq,sip_amount,sip_period_day,folio) VALUES  ('${userdata1}', '${ashdata1}','${ashdata2}','${ashdata3}','${ashdata4}','${ashdata5}','${ashdata6}','${userdata18}','S','${userdata3}','${userdata4}','${userdata5}','${userdata6}','${userdata7}','${userdata8}','${userdata9}','${userdata10}','${userdata11}','${userdata12}','${userdata13}','${userdata14}','${userdata15}','${userdata16}','${userdata17}','${userdata19}','${ userdata20}','${userdata21}','${userdata22}','${userdata23}','${userdata24}','${userdata25}','${ userdata26}','${userdata27}','${userdata28}','${userdata29}')`; 
+     
+     sql.query(sql_purchase, function (err, resvv) {
+      console.log(sql_purchase,resvv);
+        console.log("Data Saved:",resvv);
+        
+       // result(null,{ status:200, message:"Data Saved:",  data:resvv });
+        
+      });
     }
     else 
     { 
