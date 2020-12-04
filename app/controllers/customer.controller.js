@@ -275,8 +275,8 @@ exports.purchase_sip = (req, res) => {
       
     if (Array.isArray(fatcaresult2) && fatcaresult2.length) {
       fatcaresult2.forEach(element => { 
-     //console.log(element.return_msg._text); 
-    // msg=msg+element.return_msg._text + '||';
+     console.log(element.return_msg._text); 
+     msg=msg+element.return_msg._text + '||';
       }); 
   //console.log("C- Output XML - Line 958", fatcaresult2[0].return_msg._text)
   //console.log("C- Output XML - Line 960", fatcaresult2[1].return_msg._text)
