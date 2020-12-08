@@ -3,5 +3,6 @@ module.exports = app => {
  
     
   app.post("/purchase_sip",customers.purchase_sip);
+   app.get("/cronjobproductinsertion",customers.cronjobproductinsertion);
   
 };
