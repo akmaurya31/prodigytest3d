@@ -418,7 +418,7 @@ database: "u457285024_test"
       console.log(sql);
     
       con.query(sql, function (err, result) {
-         if (err) return;
+         if (err) throw err;
           console.log(inc + " records inserted");
 	      return
         });
