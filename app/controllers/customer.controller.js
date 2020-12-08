@@ -364,6 +364,68 @@ exports.purchase_sip = (req, res) => {
     });
   };
   
-  
+  exports.cronjobproductinsertion = (req, res) => {  
+   
+  // Customer.purchase_sip1(req.body.email,(err, data) => {
+
+    let ash_arrk={NMFIIService:{
+      service_request:{
+      appln_id:'MFS21399',
+      password:'Account@2121',
+      broker_code:'ARN-21399',
+      }
+    }}
+    axios.get('https://uat.nsenmf.com/NMFIIService/NMFService/product?BrokerCode=ARN-21399&Appln_Id=MFS21399&Password=Account@2121',
+      {headers:
+      {'Content-Type': 'text/xml'}
+    }).then(res22=>{
+     //console.log("C- Output XML - Line 946", res22)  
+
+
+     let result1 = convert.xml2js(res22.data, {compact: true, spaces: 4});
+    // {
+    // }).then(res22=>{
+    //  console.log("C- Output XML - Line 946", res22)  		  
+    //  var result1 = convert.xml2js(res22.body, {compact: true, spaces: 4});
+
+     var productarray=result1.DataSet['diffgr:diffgram'].NewDataSet.product_master;
+     //NMFIISERVICES.product_master;
+     
+     //console.log(result1.DataSet['diffgr:diffgram'].NewDataSet.product_master)
+     
+     //console.log(productarray)
+     var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "test"
+});
+     con.connect(function(err) {
+      if (err) throw err;
+      console.log("Connected!");
+    });
+    //return
+    var inc=0;
+    productarray.forEach(function (item) { 
+      //console.log("ashishJi-"+item.PRODUCT_LONG_NAME._text);
+      var sql = "INSERT INTO cust_books (c_name, b_name, no_copies) VALUES ('" + item.PRODUCT_LONG_NAME._text + "',2,1)";   
+        
+      console.log(sql);
+    
+      con.query(sql, function (err, result) {
+         if (err) return;
+          console.log(inc + " records inserted");
+        });
+    
+        inc=inc+1
+    
+    });
+    
+    console.log("res last line 429");
+      return 
+      }).catch(err=>{console.log(err)});
+      
+    } 
   
   
