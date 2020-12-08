@@ -364,7 +364,7 @@ exports.purchase_sip = (req, res) => {
     });
   };
   
-  exports.cronjobproductinsertion = (req, res) => {  
+ exports.cronjobproductinsertion = (req, res) => {  
    
   // Customer.purchase_sip1(req.body.email,(err, data) => {
 
@@ -395,25 +395,25 @@ exports.purchase_sip = (req, res) => {
      
      var mysql = require('mysql');
 var con = mysql.createConnection({
- //host: "localhost",
-// user: "root",
-// password: "",
-// database: "test"
+ host: "localhost",
+ user: "root",
+ password: "",
+ database: "test"
 // host: "5.181.218.103",
 //user: "u457285024_root",
 //password: "FGzrQ$2n",
 //database: "u457285024_test"
 	
-HOST: "162.215.252.35",
- USER: "trishffe_prodigy",
-  PASSWORD: "C@ZpF^MB_D2M",
- DB: "trishffe_prodigy_db"
+host: "162.215.252.35",
+ user: "trishffe_prodigy",
+  password: "C@ZpF^MB_D2M",
+ database: "trishffe_prodigy_db"
 });
      con.connect(function(err) {
       if (err) throw err;
       console.log("Connected!");
     });
-    //return
+    return
     var inc=0;
     productarray.forEach(function (item) { 
       //console.log("ashishJi-"+item.PRODUCT_LONG_NAME._text);
