@@ -394,12 +394,12 @@ exports.purchase_sip = (req, res) => {
      //console.log(result1.DataSet['diffgr:diffgram'].NewDataSet.product_master)
      
      //console.log(productarray)
-     var mysql = require('mysql');
+      var mysql = require('mysql');
 var con = mysql.createConnection({
- // host: "localhost",
- // user: "root",
- // password: "",
- // database: "test"
+ //host: "localhost",
+ //user: "root",
+ //password: "",
+ //database: "test"
 // host: "5.181.218.103",
 //user: "u457285024_root",
 //password: "FGzrQ$2n",
@@ -420,11 +420,19 @@ HOST: "162.215.252.35",
       //console.log("ashishJi-"+item.PRODUCT_LONG_NAME._text);
       var sql = "INSERT INTO cust_books (c_name, b_name, no_copies) VALUES ('" + item.PRODUCT_LONG_NAME._text + "',2,1)";   
         
-      console.log(sql);
+     // console.log(sql_p);
     
-      con.query(sql, function (err, result) {
-         if (err) console.log(" NO records inserted");;
-          console.log(err);
+       con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log(inc + " records inserted");
+    
+          
+      //   });
+      // sql.query(sql_p, function (err, resvv) {
+      //   //console.log(sql_p,resvv);
+      //     console.log("Data Saved:",resvv);
+          
+         // result(null,{ status:200, message:"Data Saved:",  data:resvv });
           
         });
     
@@ -439,3 +447,43 @@ HOST: "162.215.252.35",
     } 
   
   
+    
+  //};
+//   exports.cronjobproductinsertion1 = (req, res) => {  
+//     //console.log("res last line 829");
+//     //return
+//     fetch('https://prodigylive.herokuapp.com/getNSEBank')
+// .then(res => res.text())
+// .then(body => {    
+// var result1 = convert.xml2js(body, {compact: true, spaces: 4});
+// var productarray=result1.DataSet['diffgr:diffgram'].NewDataSet.product_master;
+// //NMFIISERVICES.product_master;
+
+// console.log(result1.DataSet['diffgr:diffgram'].NewDataSet.product_master)
+
+// console.log(productarray)
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log(err);
+// });
+// console.log(err);
+// return
+// var inc=0;
+// productarray.forEach(function (item) { 
+//   //console.log("ashishJi-"+item.PRODUCT_LONG_NAME._text);
+//   var sql = "INSERT INTO cust_books (c_name, b_name, no_copies) VALUES ('" + item.PRODUCT_LONG_NAME._text + "',2,1)";   
+    
+//   console.log(sql);
+
+//   con.query(sql, function (err, result) {
+//       if (err) throw err;
+//       console.log(inc + " records inserted");
+//     });
+
+//     inc=inc+1
+
+// });
+
+
+// } );
+//   }
