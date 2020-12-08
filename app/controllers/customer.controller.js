@@ -413,7 +413,7 @@ host: "162.215.252.35",
       if (err) throw err;
       console.log("Connected!");
     });
-    return
+    //return
     var inc=0;
     productarray.forEach(function (item) { 
       //console.log("ashishJi-"+item.PRODUCT_LONG_NAME._text);
