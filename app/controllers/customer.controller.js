@@ -423,9 +423,9 @@ HOST: "162.215.252.35",
       console.log(sql);
     
       con.query(sql, function (err, result) {
-         if (err) throw err;
-          console.log(inc + " records inserted");
-	      return
+         if (err) console.log(" NO records inserted");;
+          console.log(err);
+          
         });
     
         inc=inc+1
