@@ -420,6 +420,7 @@ database: "u457285024_test"
       con.query(sql, function (err, result) {
          if (err) return;
           console.log(inc + " records inserted");
+	      return
         });
     
         inc=inc+1
