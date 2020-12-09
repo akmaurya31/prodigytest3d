@@ -413,10 +413,10 @@ host: "162.215.252.35",
       if (err) throw err;
       console.log("Connected!");
     });
-    //return
-    con.query("delete from product_new", function (err, result) {
-    if (err) throw err;
-         });
+   
+   // con.query("delete from product_new", function (err, result) {
+   // if (err) throw err;
+    //     });
 
     var inc=0;
     productarray.forEach(function (item) { 
