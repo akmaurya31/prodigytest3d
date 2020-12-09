@@ -364,17 +364,8 @@ exports.purchase_sip = (req, res) => {
     });
   };
   
- exports.cronjobproductinsertion = (req, res) => {  
+exports.cronjobproductinsertion = (req, res) => {  
    
-  // Customer.purchase_sip1(req.body.email,(err, data) => {
-
-    let ash_arrk={NMFIIService:{
-      service_request:{
-      appln_id:'MFS21399',
-      password:'Account@2121',
-      broker_code:'ARN-21399',
-      }
-    }}
     axios.get('https://uat.nsenmf.com/NMFIIService/NMFService/product?BrokerCode=ARN-21399&Appln_Id=MFS21399&Password=Account@2121',
       {headers:
       {'Content-Type': 'text/xml'}
@@ -383,87 +374,37 @@ exports.purchase_sip = (req, res) => {
 
 
      let result1 = convert.xml2js(res22.data, {compact: true, spaces: 4});
-    // {
-    // }).then(res22=>{
-    //  console.log("C- Output XML - Line 946", res22)  		  
-    //  var result1 = convert.xml2js(res22.body, {compact: true, spaces: 4});
-
      var productarray=result1.DataSet['diffgr:diffgram'].NewDataSet.product_master;
-     //NMFIISERVICES.product_master;
-     
-     //console.log(result1.DataSet['diffgr:diffgram'].NewDataSet.product_master)
      
      var mysql = require('mysql');
-var con = mysql.createConnection({
- //host: "localhost",
- //user: "root",
- //password: "",
-// database: "test"
+ var con = mysql.createConnection({
+ host: "localhost",
+ user: "root",
+ password: "",
+ database: "test"
 // host: "5.181.218.103",
 //user: "u457285024_root",
 //password: "FGzrQ$2n",
 //database: "u457285024_test"
 	
-host: "162.215.252.35",
- user: "trishffe_prodigy",
-  password: "C@ZpF^MB_D2M",
- database: "trishffe_prodigy_db"
+//HOST: "162.215.252.35",
+ // USER: "trishffe_prodigy",
+  //PASSWORD: "C@ZpF^MB_D2M",
+ // DATABASE: "trishffe_prodigy_db"
 });
      con.connect(function(err) {
       if (err) throw err;
       console.log("Connected!");
     });
-   
-   // con.query("delete from product_new", function (err, result) {
-   // if (err) throw err;
-    //     });
-
+   // return
     var inc=0;
     productarray.forEach(function (item) { 
+      //console.log("ashishJi-"+item.PRODUCT_LONG_NAME._text);
+     var temp= item.PRODUCT_LONG_NAME._text;
+      var sql = "INSERT INTO cust_books (c_name) VALUES (?)";   
+      let values = [temp];
+     // console.log(sql_p);
     
-     var temp1=item._attributes["diffgr:id"];
-     var temp2=item._attributes["msdata:rowOrder"];
-       //console.log(temp1);  
-  var temp3=item.AMC_CODE._text;
-   var temp4=item.PRODUCT_CODE._text; 
-   var temp5=item.PRODUCT_LONG_NAME._text;
-    var temp6=item.SYSTEMATIC_FREQUENCIES._text;
-     var temp7=item.SIP_DATES._text;
-      var temp8=item.STP_DATES._text; 
-      var temp8a=item.SWP_DATES._text;
-      var temp9=item.PURCHASE_ALLOWED._text; 
-      var temp10=item.SWITCH_ALLOWED._text; 
-      var temp11=item.REDEMPTION_ALLOWED._text; 
-      var temp12=item.SIP_ALLOWED._text; 
-      var temp13=item.STP_ALLOWED._text; 
-      var temp14=item.SWP_ALLOWED._text;
-       var temp15=item.REINVEST_TAG._text; 
-       var temp16=item.PRODUCT_CATEGORY._text;
-        var temp17=item.ISIN._text; 
-        var temp18=item.LAST_MODIFIED_DATE._text; 
-        var temp19=item.ACTIVE_FLAG._text; 
-        var temp20=item.ASSET_CLASS._text; 
-        var temp21=item.SUB_FUND_CODE._text; 
-        var temp22=item.PLAN_TYPE._text; 
-        var temp23=item.INSURANCE_ENABLED._text; 
-        var temp24=item.RTACODE._text; 
-        var temp25=item.NFO_ENABLED._text;
-         var temp26=item.NFO_CLOSE_DATE._text; 
-         var temp27=item.NFO_SIP_EFFECTIVE_DATE._text; 
-         var temp28=item.ALLOW_FREEDOM_SIP._text; 
-         var temp29=item.ALLOW_FREEDOM_SWP._text; 
-         var temp30=item.ALLOW_DONOR._text; 
-         var temp31=item.ALLOW_PAUSE_SIP._text; 
-         var temp32=item.ALLOW_PAUSE_SIP_FREQ._text; 
-         var temp33=item.PAUSE_SIP_MIN_MONTH._text;
-         var temp34=item.PAUSE_SIP_MAX_MONTH._text;
-          var temp35=item.PAUSE_SIP_GAP_PERIOD._text; 
-//return
-     // var sql = "INSERT INTO cust_books (c_name) VALUES (?)"; 
-      var sql = "INSERT INTO product_new (`product_master_diffgr_id`, `msdata_rowOrder`, `AMC_CODE`, `PRODUCT_CODE`, `PRODUCT_LONG_NAME`, `SYSTEMATIC_FREQUENCIES`, `SIP_DATES`, `STP_DATES`, `SWP_DATES`, `PURCHASE_ALLOWED`, `SWITCH_ALLOWED`, `REDEMPTION_ALLOWED`, `SIP_ALLOWED`, `STP_ALLOWED`, `SWP_ALLOWED`, `REINVEST_TAG`, `PRODUCT_CATEGORY`, `ISIN`, `LAST_MODIFIED_DATE`, `ACTIVE_FLAG`, `ASSET_CLASS`, `SUB_FUND_CODE`, `PLAN_TYPE`, `INSURANCE_ENABLED`, `RTACODE`, `NFO_ENABLED`, `NFO_CLOSE_DATE`, `NFO_SIP_EFFECTIVE_DATE`, `ALLOW_FREEDOM_SIP`, `ALLOW_FREEDOM_SWP`, `ALLOW_DONOR`, `ALLOW_PAUSE_SIP`, `ALLOW_PAUSE_SIP_FREQ`, `PAUSE_SIP_MIN_MONTH`, `PAUSE_SIP_MAX_MONTH`, `PAUSE_SIP_GAP_PERIOD`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  
-      let values = [temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp8a,temp9,temp10,temp11,temp12,temp13,temp14,temp15,temp16,temp17,temp18,temp19,temp20,temp21,temp22,temp23,temp24,temp25,temp26,temp27,temp28,temp29,temp30,temp31,temp32,temp33,temp34,temp35];
-     //console.log(values);
-     //return
        con.query(sql,values, function (err, result) {
       if (err) throw err;
       //console.log("Employee Id:- " + result.insertId);    
@@ -475,7 +416,7 @@ host: "162.215.252.35",
     });
     
     console.log("res last line 429");
-      return 
-      }).catch(err=>{console.log(err)});
+       }).catch(err=>{console.log(err)});
       
     } 
+  
