@@ -378,19 +378,19 @@ exports.cronjobproductinsertion = (req, res) => {
      
      var mysql = require('mysql');
  var con = mysql.createConnection({
- host: "localhost",
- user: "root",
- password: "",
- database: "test"
+ //host: "localhost",
+ //user: "root",
+ //password: "",
+ //database: "test"
 // host: "5.181.218.103",
 //user: "u457285024_root",
 //password: "FGzrQ$2n",
 //database: "u457285024_test"
 	
-//HOST: "162.215.252.35",
- // USER: "trishffe_prodigy",
-  //PASSWORD: "C@ZpF^MB_D2M",
- // DATABASE: "trishffe_prodigy_db"
+HOST: "162.215.252.35",
+  USER: "trishffe_prodigy",
+  PASSWORD: "C@ZpF^MB_D2M",
+  DATABASE: "trishffe_prodigy_db"
 });
      con.connect(function(err) {
       if (err) throw err;
